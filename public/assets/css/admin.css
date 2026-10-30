@@ -1,0 +1,16 @@
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,sans-serif;background:#f3f4f1;color:#2b2f2a}
+a{color:#4f7a5a}.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;background:#fff;padding:.7rem 1.2rem;box-shadow:0 1px 4px #0002}
+.top nav{display:flex;gap:1rem;align-items:center}.brand{font-weight:600;text-decoration:none}
+.wrap{max-width:1000px;margin:1.5rem auto;padding:0 1rem}.row{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.panel{background:#fff;border-radius:12px;padding:1.2rem;margin:1rem 0;box-shadow:0 1px 6px #0001;overflow-x:auto}.narrow{max-width:360px;margin:15vh auto}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}.grid h2,.grid .full{grid-column:1/-1}
+label{display:block;font-size:.85rem;font-weight:500}label.check{display:flex;gap:.5rem;align-items:center}
+input,select,textarea{width:100%;margin-top:.25rem;padding:.55rem .7rem;border:1px solid #ccd2c8;border-radius:8px;font:inherit}input[type=checkbox]{width:auto;margin:0}
+.btn{display:inline-block;border:0;background:#4f7a5a;color:#fff;padding:.6rem 1.2rem;border-radius:8px;cursor:pointer;text-decoration:none;font:inherit}
+.btn.ghost{background:transparent;color:#4f7a5a;border:1px solid #4f7a5a}.btn.danger{background:#b3402f}
+button.link{background:none;border:0;cursor:pointer;color:#4f7a5a;font:inherit;padding:0}button.danger.link,.danger{color:#b3402f}.btn.danger{color:#fff}
+table{width:100%;border-collapse:collapse}th,td{padding:.5rem;border-bottom:1px solid #e5e8e1;text-align:left;vertical-align:top}.act{display:flex;gap:.8rem;align-items:center}.act form{margin:0}
+.flash{padding:.7rem 1rem;border-radius:8px;margin:.5rem 0}.flash.ok{background:#e3f1e5;color:#245a2c}.flash.err{background:#fbe5e5;color:#8a2b2b}
+.thumbs{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:1rem}.thumbs form{width:110px;text-align:center}.thumbs img{width:110px;height:110px;object-fit:cover;border-radius:8px}
+.muted{color:#888}.login{display:block}small{color:#666}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
