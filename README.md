@@ -10,6 +10,11 @@ Website undangan pernikahan **multi-pasangan**: satu aplikasi, banyak undangan, 
 - 5 template: Elegant Sage, Romantic Rose, Royal Navy (gelap), Modern Minimal, dan Adat Jawa. Dipilih per undangan di admin (kartu dengan tombol *Pratinjau*).
 - Panel admin `/admin`: peran **admin** (semua undangan + kelola akun) dan **client** (hanya undangan miliknya).
 
+## Tampilan
+![Semua template](docs/screenshots/00-semua-template-cover.jpg)
+
+Halaman penuh per template: [Sage](docs/screenshots/sage-2-halaman-penuh.jpg) · [Rose](docs/screenshots/rose-2-halaman-penuh.jpg) · [Navy](docs/screenshots/navy-2-halaman-penuh.jpg) · [Minimal](docs/screenshots/minimal-2-halaman-penuh.jpg) · [Adat Jawa](docs/screenshots/javanese-2-halaman-penuh.jpg) · Admin: [daftar](docs/screenshots/admin-2-daftar.jpg), [kelola](docs/screenshots/admin-3-kelola.jpg)
+
 ## Menjalankan
 ```bash
 composer install
