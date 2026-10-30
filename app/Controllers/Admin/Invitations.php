@@ -128,7 +128,7 @@ class Invitations extends BaseController
             'bride_name'   => 'required|max_length[100]',
             'bride_nick'   => 'required|max_length[50]',
             'wedding_date' => 'required|valid_date[Y-m-d\TH:i]',
-            'theme'        => 'required|in_list[' . implode(',', array_keys(InvitationModel::THEMES)) . ']',
+            'theme'        => 'required|in_list[' . implode(',', array_keys(InvitationModel::TEMPLATES)) . ']',
             'music_url'    => 'permit_empty|max_length[255]',
             'groom_photo_file' => 'permit_empty|is_image[groom_photo_file]|max_size[groom_photo_file,4096]',
             'bride_photo_file' => 'permit_empty|is_image[bride_photo_file]|max_size[bride_photo_file,4096]',

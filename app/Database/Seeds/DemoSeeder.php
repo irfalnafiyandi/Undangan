@@ -21,6 +21,8 @@ class DemoSeeder extends Seeder
             ['slug' => 'rina-dan-adit', 'theme' => 'sage', 'g' => ['Aditya Pratama', 'Adit', 'Putra dari Bapak Hendra Pratama & Ibu Sri Wahyuni'], 'b' => ['Rina Maharani', 'Rina', 'Putri dari Bapak Surya Maharani & Ibu Lestari Dewi'], 'days' => 60],
             ['slug' => 'dimas-dan-sinta', 'theme' => 'rose', 'g' => ['Dimas Anggara', 'Dimas', 'Putra dari Bapak Bambang Anggara & Ibu Rukmini'], 'b' => ['Sinta Aulia', 'Sinta', 'Putri dari Bapak Rahmat Hidayat & Ibu Aminah'], 'days' => 90],
             ['slug' => 'fajar-dan-nadia', 'theme' => 'navy', 'g' => ['Fajar Nugraha', 'Fajar', 'Putra dari Bapak Yusuf Nugraha & Ibu Tuti Handayani'], 'b' => ['Nadia Putri', 'Nadia', 'Putri dari Bapak Anwar Saleh & Ibu Mariam'], 'days' => 120],
+            ['slug' => 'bagas-dan-laras', 'theme' => 'minimal', 'g' => ['Bagas Saputra', 'Bagas', 'Putra dari Bapak Teguh Saputra & Ibu Wulan'], 'b' => ['Laras Ayu', 'Laras', 'Putri dari Bapak Gunawan & Ibu Sari Indah'], 'days' => 150],
+            ['slug' => 'arjuna-dan-sekar', 'theme' => 'javanese', 'g' => ['Arjuna Wicaksono', 'Arjuna', 'Putra dari Bapak Wicaksono & Ibu Siti Rahayu'], 'b' => ['Sekar Ayuningtyas', 'Sekar', 'Putri dari Bapak Suharto & Ibu Endang Lestari'], 'days' => 180],
         ];
 
         foreach ($demos as $i => $d) {

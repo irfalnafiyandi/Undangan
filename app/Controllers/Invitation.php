@@ -34,6 +34,12 @@ class Invitation extends BaseController
             }
         }
 
+        // Pratinjau template: /u/slug?theme=minimal (hanya untuk yang sudah login admin)
+        $preview = (string) $this->request->getGet('theme');
+        if (session()->get('user_id') && isset(InvitationModel::TEMPLATES[$preview])) {
+            $inv['theme'] = $preview;
+        }
+
         $guestName = $guest['name'] ?? trim((string) $this->request->getGet('to'));
 
         $rsvps = new RsvpModel();

@@ -9,7 +9,7 @@
     <tr>
         <td><strong><?= esc($r['groom_nick']) ?> &amp; <?= esc($r['bride_nick']) ?></strong><br><small>/u/<?= esc($r['slug']) ?></small></td>
         <td><?= esc(date('d/m/Y H:i', strtotime($r['wedding_date']))) ?></td>
-        <td><?= esc(\App\Models\InvitationModel::THEMES[$r['theme']] ?? $r['theme']) ?></td>
+        <td><?= esc(\App\Models\InvitationModel::TEMPLATES[$r['theme']]['label'] ?? $r['theme']) ?></td>
         <td><?= $r['rsvp_count'] ?></td>
         <td><?= $r['is_published'] ? 'Tayang' : 'Draft' ?></td>
         <td class="act">

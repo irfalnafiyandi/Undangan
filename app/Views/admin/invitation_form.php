@@ -25,10 +25,18 @@ $bulan = fn ($s) => date('d/m/Y H:i', strtotime($s));
     <label>Foto wanita <input type="file" name="bride_photo_file" accept="image/*"></label>
     <label>Foto cover <input type="file" name="cover_photo_file" accept="image/*"></label>
     <label>Tanggal pernikahan <input type="datetime-local" name="wedding_date" required value="<?= esc(old('wedding_date', $dt($inv['wedding_date'] ?? null))) ?>"></label>
-    <label>Tema
-        <select name="theme"><?php foreach (\App\Models\InvitationModel::THEMES as $k => $label): ?>
-            <option value="<?= $k ?>" <?= $v('theme', 'sage') === $k ? 'selected' : '' ?>><?= $label ?></option><?php endforeach ?></select>
-    </label>
+    <fieldset class="full tpl">
+        <legend>Template</legend>
+        <?php foreach (\App\Models\InvitationModel::TEMPLATES as $k => $t): ?>
+        <label class="tpl-card">
+            <input type="radio" name="theme" value="<?= $k ?>" <?= $v('theme', 'sage') === $k ? 'checked' : '' ?>>
+            <span class="swatch"><?php foreach ($t['colors'] as $c): ?><i style="background:<?= $c ?>"></i><?php endforeach ?></span>
+            <strong><?= esc($t['label']) ?></strong>
+            <small><?= esc($t['desc']) ?></small>
+            <?php if ($inv): ?><a href="<?= site_url('u/' . $inv['slug'] . '?theme=' . $k) ?>" target="_blank">Pratinjau ↗</a><?php endif ?>
+        </label>
+        <?php endforeach ?>
+    </fieldset>
     <label>Slug URL <input name="slug" value="<?= esc($v('slug')) ?>" placeholder="otomatis dari nama"></label>
     <?php if ($owners): ?>
     <label>Pemilik
