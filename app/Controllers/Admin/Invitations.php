@@ -130,6 +130,7 @@ class Invitations extends BaseController
             'wedding_date' => 'required|valid_date[Y-m-d\TH:i]',
             'theme'        => 'required|in_list[' . implode(',', array_keys(InvitationModel::TEMPLATES)) . ']',
             'music_url'    => 'permit_empty|max_length[255]',
+            'live_url'     => 'permit_empty|valid_url_strict|max_length[255]',
             'groom_photo_file' => 'permit_empty|is_image[groom_photo_file]|max_size[groom_photo_file,4096]',
             'bride_photo_file' => 'permit_empty|is_image[bride_photo_file]|max_size[bride_photo_file,4096]',
             'cover_photo_file' => 'permit_empty|is_image[cover_photo_file]|max_size[cover_photo_file,4096]',
@@ -140,7 +141,7 @@ class Invitations extends BaseController
 
         $p    = $this->request->getPost();
         $data = [];
-        foreach (['groom_name', 'groom_nick', 'groom_parents', 'bride_name', 'bride_nick', 'bride_parents', 'opening_text', 'quote', 'quote_source', 'music_url', 'gifts', 'theme'] as $f) {
+        foreach (['groom_name', 'groom_nick', 'groom_parents', 'bride_name', 'bride_nick', 'bride_parents', 'opening_text', 'quote', 'quote_source', 'music_url', 'live_url', 'gift_address', 'gifts', 'theme'] as $f) {
             $data[$f] = trim((string) ($p[$f] ?? ''));
         }
         $data['wedding_date'] = str_replace('T', ' ', $p['wedding_date']) . ':00';

@@ -101,3 +101,11 @@ body[data-theme=javanese] .card { border:2px solid var(--gold); border-radius:6p
 body[data-theme=javanese] .person img { border-radius:50% 50% 6px 6px; border-color:var(--gold); }
 body[data-theme=javanese] .btn { background:var(--accent); } body[data-theme=javanese] .btn.ghost { background:transparent; color:var(--accent); border-color:var(--accent); }
 body[data-theme=javanese] .countdown div { border:1px solid var(--gold); border-radius:4px; }
+
+.video { max-width:640px; margin:1.5rem auto 0; aspect-ratio:16/9; border-radius:14px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,.15); }
+.video iframe { width:100%; height:100%; border:0; }
+.gift-addr { margin:1.5rem auto 0; }
+.evpick { border:1px solid #cfd5c8; border-radius:12px; padding:.6rem 1rem; background:#fff; color:var(--ink); }
+.evpick legend { font-size:.85rem; padding:0 .4rem; } .evpick label { display:block; } .evpick input { width:auto; margin-right:.4rem; }
+.cover-box .to small:last-child { margin-top:.3rem; }
+body[data-theme=navy] .evpick { background:#1b2c50; border-color:#3a4c7d; }

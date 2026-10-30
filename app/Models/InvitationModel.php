@@ -10,7 +10,7 @@ class InvitationModel extends Model
     protected $allowedFields = [
         'user_id', 'slug', 'theme', 'groom_name', 'groom_nick', 'groom_parents', 'groom_photo',
         'bride_name', 'bride_nick', 'bride_parents', 'bride_photo', 'cover_photo', 'wedding_date',
-        'opening_text', 'quote', 'quote_source', 'music_url', 'gifts', 'is_published',
+        'opening_text', 'live_url', 'gift_address', 'quote', 'quote_source', 'music_url', 'gifts', 'is_published',
     ];
     protected $useTimestamps = true;
 

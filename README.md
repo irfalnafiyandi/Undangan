@@ -4,6 +4,8 @@ Website undangan pernikahan **multi-pasangan**: satu aplikasi, banyak undangan, 
 
 ## Fitur
 - Undangan publik responsif (HP-first): cover dengan nama tamu, mempelai, kutipan, hitung mundur, acara + peta, galeri, amplop digital (salin rekening), RSVP & buku ucapan, musik latar, tombol "Simpan ke Kalender".
+- RSVP per acara (tamu memilih akad/resepsi), kuota orang per tamu, ekspor RSVP ke CSV, dan check-in tamu di hari-H.
+- Live streaming (embed YouTube) dan titip kado (alamat pengiriman).
 - Link personal per tamu: `/u/{slug}/{kode}` atau `/u/{slug}?to=Nama`; tombol kirim via WhatsApp.
 - 5 template: Elegant Sage, Romantic Rose, Royal Navy (gelap), Modern Minimal, dan Adat Jawa. Dipilih per undangan di admin (kartu dengan tombol *Pratinjau*).
 - Panel admin `/admin`: peran **admin** (semua undangan + kelola akun) dan **client** (hanya undangan miliknya).
@@ -12,7 +14,7 @@ Website undangan pernikahan **multi-pasangan**: satu aplikasi, banyak undangan, 
 ```bash
 composer install
 cp env .env            # lalu atur baseURL / database bila perlu
-php spark migrate
+php spark migrate      # jalankan lagi setelah update untuk menerapkan migrasi baru
 php spark db:seed DemoSeeder
 php spark serve        # http://localhost:8080
 ```

@@ -29,6 +29,8 @@ $routes->group('admin', static function ($routes) {
         $routes->post('invitations/(:num)/gallery/(:num)/delete', 'Admin\Manage::deleteGallery/$1/$2');
         $routes->post('invitations/(:num)/guests', 'Admin\Manage::addGuests/$1');
         $routes->post('invitations/(:num)/guests/(:num)/delete', 'Admin\Manage::deleteGuest/$1/$2');
+        $routes->post('invitations/(:num)/guests/(:num)/checkin', 'Admin\Manage::checkin/$1/$2');
+        $routes->get('invitations/(:num)/rsvps.csv', 'Admin\Manage::exportRsvp/$1');
         $routes->post('invitations/(:num)/rsvps/(:num)/delete', 'Admin\Manage::deleteRsvp/$1/$2');
 
         $routes->get('users', 'Admin\Users::index');

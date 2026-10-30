@@ -51,6 +51,8 @@ class Invitation extends BaseController
             'wishes'    => $rsvps->where('invitation_id', $inv['id'])->where("message <> ''")->orderBy('id', 'DESC')->findAll(50),
             'guestName' => mb_substr($guestName, 0, 100),
             'guestCode' => $guest['code'] ?? null,
+            'quota'     => $guest ? max(1, (int) $guest['quota']) : 10,
+            'liveEmbed' => $this->youtubeEmbed((string) $inv['live_url']),
             'gifts'     => $this->parseGifts((string) $inv['gifts']),
         ]);
     }
@@ -75,18 +77,32 @@ class Invitation extends BaseController
         }
 
         $attendance = $this->request->getPost('attendance');
+        $quota      = $guest ? max(1, (int) $guest['quota']) : 10;
+        $validIds   = array_column((new EventModel())->where('invitation_id', $inv['id'])->findAll(), 'id');
+        $eventIds   = array_values(array_intersect($validIds, array_map('intval', (array) $this->request->getPost('events'))));
         (new RsvpModel())->insert([
             'invitation_id' => $inv['id'],
             'guest_id'      => $guest['id'] ?? null,
             'name'          => trim($this->request->getPost('name')),
             'attendance'    => $attendance,
-            'pax'           => $attendance === 'hadir' ? (int) ($this->request->getPost('pax') ?: 1) : 0,
+            'pax'           => $attendance === 'hadir' ? min($quota, (int) ($this->request->getPost('pax') ?: 1)) : 0,
+            'event_ids'     => $attendance === 'hadir' ? implode(',', $eventIds) : '',
             'message'       => trim((string) $this->request->getPost('message')),
         ]);
 
         $back = $guest ? "u/{$slug}/{$guest['code']}" : "u/{$slug}";
 
         return redirect()->to($back . '#rsvp')->with('rsvp_ok', 'Terima kasih, konfirmasi dan ucapan Anda sudah kami terima.');
+    }
+
+    /** Ubah link YouTube (watch, youtu.be, live, embed) menjadi URL embed; selain itu null. */
+    private function youtubeEmbed(string $url): ?string
+    {
+        if (preg_match('#(?:youtube\.com/(?:watch\?(?:.*&)?v=|live/|embed/|shorts/)|youtu\.be/)([\w-]{11})#', $url, $m)) {
+            return 'https://www.youtube.com/embed/' . $m[1];
+        }
+
+        return null;
     }
 
     /** Format per baris: "Bank|No Rekening|Atas Nama" */

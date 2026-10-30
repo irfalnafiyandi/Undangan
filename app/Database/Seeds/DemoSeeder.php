@@ -42,6 +42,8 @@ class DemoSeeder extends Seeder
                 'quote_source'  => 'QS. Ar-Rum: 21',
                 'music_url'     => 'assets/audio/canon-demo.mp3',
                 'gifts'         => "BCA|1234567890|{$d['b'][0]}\nMandiri|9876543210|{$d['g'][0]}",
+                'live_url'      => '',
+                'gift_address'  => "Jl. Melati Raya No. 25, Jakarta Selatan\nPenerima: {$d['b'][0]} (0812-0000-0000)",
                 'is_published'  => 1,
                 'created_at'    => $now, 'updated_at' => $now,
             ]);
@@ -57,8 +59,8 @@ class DemoSeeder extends Seeder
             }
 
             $db->table('guests')->insertBatch([
-                ['invitation_id' => $id, 'name' => 'Budi Santoso', 'code' => substr(md5($d['slug'] . 'budi'), 0, 8), 'phone' => '081234567890'],
-                ['invitation_id' => $id, 'name' => 'Keluarga Besar Wijaya', 'code' => substr(md5($d['slug'] . 'wijaya'), 0, 8), 'phone' => ''],
+                ['invitation_id' => $id, 'name' => 'Budi Santoso', 'code' => substr(md5($d['slug'] . 'budi'), 0, 8), 'phone' => '081234567890', 'quota' => 2],
+                ['invitation_id' => $id, 'name' => 'Keluarga Besar Wijaya', 'code' => substr(md5($d['slug'] . 'wijaya'), 0, 8), 'phone' => '', 'quota' => 5],
             ]);
 
             if ($i === 0) {

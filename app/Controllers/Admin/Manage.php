@@ -82,14 +82,14 @@ class Manage extends Invitations
         return $this->back($id, 'Foto dihapus.', 'galeri');
     }
 
-    /** Satu tamu per baris: "Nama" atau "Nama|08123456789". */
+    /** Satu tamu per baris: "Nama", "Nama|08123456789" atau "Nama|08123456789|kuota". */
     public function addGuests(int $id)
     {
         $this->authorize($id);
         $model = new GuestModel();
         $n     = 0;
         foreach (preg_split('/\R/', (string) $this->request->getPost('guests')) as $line) {
-            [$name, $phone] = array_pad(array_map('trim', explode('|', $line, 2)), 2, '');
+            [$name, $phone, $quota] = array_pad(array_map('trim', explode('|', $line, 3)), 3, '');
             if ($name === '') {
                 continue;
             }
@@ -97,6 +97,7 @@ class Manage extends Invitations
                 'invitation_id' => $id,
                 'name'          => mb_substr($name, 0, 100),
                 'phone'         => preg_replace('/\D/', '', $phone),
+                'quota'         => max(1, min(20, (int) $quota ?: 2)),
                 'code'          => bin2hex(random_bytes(4)),
             ]);
             $n++;
@@ -111,6 +112,36 @@ class Manage extends Invitations
         (new GuestModel())->where(['id' => $guestId, 'invitation_id' => $id])->delete();
 
         return $this->back($id, 'Tamu dihapus.', 'tamu');
+    }
+
+    public function checkin(int $id, int $guestId)
+    {
+        $this->authorize($id);
+        $model = new GuestModel();
+        $guest = $model->where(['id' => $guestId, 'invitation_id' => $id])->first();
+        if ($guest) {
+            $model->update($guestId, ['checked_in_at' => $guest['checked_in_at'] ? null : date('Y-m-d H:i:s')]);
+        }
+
+        return $this->back($id, 'Status check-in diperbarui.', 'tamu');
+    }
+
+    public function exportRsvp(int $id)
+    {
+        $inv    = $this->ownOr404($id);
+        $titles = array_column((new EventModel())->where('invitation_id', $id)->findAll(), 'title', 'id');
+        $out    = fopen('php://temp', 'r+');
+        fputcsv($out, ['Nama', 'Status', 'Jumlah', 'Acara', 'Ucapan', 'Waktu']);
+        foreach ((new RsvpModel())->where('invitation_id', $id)->orderBy('id')->findAll() as $r) {
+            $ev = array_map(static fn ($i) => $titles[(int) $i] ?? '', array_filter(explode(',', (string) $r['event_ids'])));
+            // Hindari injeksi formula saat dibuka di Excel
+            $safe = static fn (string $v): string => preg_match('/^[=+\-@]/', $v) ? "'" . $v : $v;
+            fputcsv($out, [$safe($r['name']), $r['attendance'], $r['pax'], implode(' & ', $ev), $safe((string) $r['message']), $r['created_at']]);
+        }
+        rewind($out);
+        $csv = "\xEF\xBB\xBF" . stream_get_contents($out);
+
+        return $this->response->download("rsvp-{$inv['slug']}.csv", $csv);
     }
 
     public function deleteRsvp(int $id, int $rsvpId)

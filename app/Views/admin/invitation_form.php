@@ -48,12 +48,14 @@ $bulan = fn ($s) => date('d/m/Y H:i', strtotime($s));
     <label class="full">Kutipan <textarea name="quote" rows="2"><?= esc($v('quote')) ?></textarea></label>
     <label>Sumber kutipan <input name="quote_source" value="<?= esc($v('quote_source')) ?>"></label>
     <label>Musik (URL atau path file mp3) <input name="music_url" value="<?= esc($v('music_url', 'assets/audio/canon-demo.mp3')) ?>"></label>
+    <label>Link live streaming (YouTube) <input type="url" name="live_url" value="<?= esc($v('live_url')) ?>" placeholder="https://www.youtube.com/watch?v=..."></label>
+    <label>Alamat kirim kado <textarea name="gift_address" rows="2"><?= esc($v('gift_address')) ?></textarea></label>
     <label class="full">Amplop digital (satu per baris: <code>Bank|No Rekening|Atas Nama</code>) <textarea name="gifts" rows="3"><?= esc($v('gifts')) ?></textarea></label>
     <label class="check"><input type="checkbox" name="is_published" value="1" <?= $v('is_published', 1) ? 'checked' : '' ?>> Tayangkan undangan</label>
     <div class="full"><button class="btn" type="submit">Simpan</button></div>
 </form>
 
-<?php if ($inv): $id = $inv['id']; ?>
+<?php if ($inv): $id = $inv['id']; $evTitles = array_column($events, 'title', 'id'); ?>
 
 <section class="panel" id="acara">
     <h2>Acara</h2>
@@ -94,7 +96,7 @@ $bulan = fn ($s) => date('d/m/Y H:i', strtotime($s));
 <section class="panel" id="tamu">
     <h2>Daftar Tamu &amp; Link Personal</h2>
     <table>
-        <tr><th>Nama</th><th>Link</th><th>Dibuka</th><th></th></tr>
+        <tr><th>Nama</th><th>Kuota</th><th>Link</th><th>Dibuka</th><th>Check-in</th><th></th></tr>
         <?php foreach ($guests as $g):
             $link = site_url("u/{$inv['slug']}/{$g['code']}");
             $wa   = 'https://wa.me/' . ($g['phone'] ? preg_replace('/^0/', '62', $g['phone']) : '') . '?text=' . rawurlencode(
@@ -102,8 +104,11 @@ $bulan = fn ($s) => date('d/m/Y H:i', strtotime($s));
             ); ?>
         <tr>
             <td><?= esc($g['name']) ?></td>
+            <td><?= (int) $g['quota'] ?></td>
             <td><input readonly value="<?= esc($link) ?>" onclick="this.select()"></td>
             <td><?= $g['opened_at'] ? '✓' : '–' ?></td>
+            <td><form method="post" action="<?= site_url("admin/invitations/{$id}/guests/{$g['id']}/checkin") ?>"><?= csrf_field() ?>
+                <button class="link"><?= $g['checked_in_at'] ? '✓ ' . esc(date('H:i', strtotime($g['checked_in_at']))) : 'Check-in' ?></button></form></td>
             <td class="act"><a href="<?= esc($wa) ?>" target="_blank" rel="noopener">WhatsApp</a>
                 <form method="post" action="<?= site_url("admin/invitations/{$id}/guests/{$g['id']}/delete") ?>"><?= csrf_field() ?><button class="link danger">Hapus</button></form></td>
         </tr>
@@ -111,19 +116,20 @@ $bulan = fn ($s) => date('d/m/Y H:i', strtotime($s));
     </table>
     <form method="post" action="<?= site_url("admin/invitations/{$id}/guests") ?>">
         <?= csrf_field() ?>
-        <label>Tambah tamu (satu per baris: <code>Nama</code> atau <code>Nama|08123456789</code>)
+        <label>Tambah tamu (satu per baris: <code>Nama</code>, <code>Nama|08123456789</code> atau <code>Nama|08123456789|kuota</code>; kuota bawaan 2)
             <textarea name="guests" rows="4" required></textarea></label>
         <button class="btn">Tambah Tamu</button>
     </form>
 </section>
 
 <section class="panel" id="rsvp">
-    <h2>RSVP &amp; Ucapan (<?= count($rsvps) ?>)</h2>
+    <div class="row"><h2>RSVP &amp; Ucapan (<?= count($rsvps) ?>)</h2><a class="btn ghost" href="<?= site_url("admin/invitations/{$id}/rsvps.csv") ?>">Ekspor CSV</a></div>
     <p>Hadir: <strong><?= array_sum(array_column(array_filter($rsvps, fn ($r) => $r['attendance'] === 'hadir'), 'pax')) ?></strong> orang</p>
     <table>
-        <tr><th>Nama</th><th>Status</th><th>Jml</th><th>Ucapan</th><th></th></tr>
+        <tr><th>Nama</th><th>Status</th><th>Jml</th><th>Acara</th><th>Ucapan</th><th></th></tr>
         <?php foreach ($rsvps as $r): ?>
-        <tr><td><?= esc($r['name']) ?></td><td><?= esc($r['attendance']) ?></td><td><?= (int) $r['pax'] ?></td><td><?= esc($r['message']) ?></td>
+        <tr><td><?= esc($r['name']) ?></td><td><?= esc($r['attendance']) ?></td><td><?= (int) $r['pax'] ?></td>
+            <td><?= esc(implode(', ', array_map(static fn ($i) => $evTitles[(int) $i] ?? '', array_filter(explode(',', (string) $r['event_ids']))))) ?></td><td><?= esc($r['message']) ?></td>
             <td><form method="post" action="<?= site_url("admin/invitations/{$id}/rsvps/{$r['id']}/delete") ?>"><?= csrf_field() ?><button class="link danger">Hapus</button></form></td></tr>
         <?php endforeach ?>
     </table>

@@ -7,6 +7,8 @@
  * @var string $guestName
  * @var ?string $guestCode
  * @var array  $gifts
+ * @var int    $quota
+ * @var ?string $liveEmbed
  */
 $ts       = strtotime($inv['wedding_date']);
 $bulan    = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -48,6 +50,7 @@ if ($first) {
         <div class="to">
             <small>Kepada Yth. Bapak/Ibu/Saudara/i</small>
             <strong><?= $guestName !== '' ? esc($guestName) : 'Tamu Undangan' ?></strong>
+            <?php if ($guestCode): ?><small>Berlaku untuk <?= (int) $quota ?> orang</small><?php endif ?>
         </div>
         <button id="open-btn" class="btn" type="button">Buka Undangan</button>
     </div>
@@ -120,6 +123,18 @@ if ($first) {
     </section>
     <?php endif ?>
 
+    <?php if ($inv['live_url']): ?>
+    <section class="sec center">
+        <h2 class="title">Live Streaming</h2>
+        <p class="lead">Tidak bisa hadir langsung? Saksikan prosesi pernikahan kami secara online.</p>
+        <?php if ($liveEmbed): ?>
+            <div class="video reveal"><iframe src="<?= esc($liveEmbed) ?>" title="Live streaming" allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+        <?php else: ?>
+            <a class="btn" href="<?= esc($inv['live_url']) ?>" target="_blank" rel="noopener">Tonton Live</a>
+        <?php endif ?>
+    </section>
+    <?php endif ?>
+
     <?php if ($gallery): ?>
     <section class="sec center">
         <h2 class="title">Galeri</h2>
@@ -131,9 +146,9 @@ if ($first) {
     </section>
     <?php endif ?>
 
-    <?php if ($gifts): ?>
+    <?php if ($gifts || $inv['gift_address']): ?>
     <section class="sec center alt">
-        <h2 class="title">Amplop Digital</h2>
+        <h2 class="title">Tanda Kasih</h2>
         <p class="lead">Doa restu Anda adalah hadiah terindah. Namun jika ingin memberi tanda kasih, dapat melalui:</p>
         <div class="events">
             <?php foreach ($gifts as $g): ?>
@@ -145,6 +160,13 @@ if ($first) {
             </article>
             <?php endforeach ?>
         </div>
+        <?php if ($inv['gift_address']): ?>
+        <article class="card reveal gift-addr">
+            <h3>Kirim Kado</h3>
+            <p><?= nl2br(esc($inv['gift_address'])) ?></p>
+            <button type="button" class="btn ghost copy" data-copy="<?= esc($inv['gift_address']) ?>">Salin Alamat</button>
+        </article>
+        <?php endif ?>
     </section>
     <?php endif ?>
 
@@ -163,7 +185,15 @@ if ($first) {
                 <option value="ragu" <?= old('attendance') === 'ragu' ? 'selected' : '' ?>>Masih ragu</option>
                 <option value="tidak" <?= old('attendance') === 'tidak' ? 'selected' : '' ?>>Maaf, tidak bisa hadir</option>
             </select>
-            <input type="number" name="pax" min="1" max="10" value="<?= esc(old('pax', '1')) ?>" placeholder="Jumlah tamu">
+            <?php if (count($events) > 1): ?>
+            <fieldset class="evpick">
+                <legend>Acara yang akan dihadiri</legend>
+                <?php foreach ($events as $ev): ?>
+                <label><input type="checkbox" name="events[]" value="<?= (int) $ev['id'] ?>" <?= in_array((string) $ev['id'], (array) old('events', array_map('strval', array_column($events, 'id')))) ? 'checked' : '' ?>> <?= esc($ev['title']) ?></label>
+                <?php endforeach ?>
+            </fieldset>
+            <?php endif ?>
+            <input type="number" name="pax" min="1" max="<?= (int) $quota ?>" value="<?= esc(old('pax', '1')) ?>" placeholder="Jumlah tamu (maks. <?= (int) $quota ?>)" aria-label="Jumlah tamu, maksimal <?= (int) $quota ?>">
             <textarea name="message" rows="4" maxlength="500" placeholder="Tulis ucapan dan doa..."><?= esc(old('message')) ?></textarea>
             <button class="btn" type="submit">Kirim</button>
         </form>
