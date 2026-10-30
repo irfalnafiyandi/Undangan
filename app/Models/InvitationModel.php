@@ -24,6 +24,10 @@ class InvitationModel extends Model
         'rose'     => ['label' => 'Romantic Rose', 'desc' => 'Pink blush yang hangat dan romantis', 'colors' => ['#fdf6f5', '#c98e93', '#b8895a']],
         'navy'     => ['label' => 'Royal Navy', 'desc' => 'Mode gelap biru malam dengan aksen emas, mewah', 'colors' => ['#14213d', '#e3c26b', '#c4a24d']],
         'minimal'  => ['label' => 'Modern Minimal', 'desc' => 'Putih bersih, hitam tegas, tipografi modern', 'colors' => ['#ffffff', '#111111', '#8a8a8a']],
+        'boho'     => ['label' => 'Boho Terracotta', 'desc' => 'Warna tanah hangat, busur matahari, santai & estetik', 'colors' => ['#fbf3ea', '#c0714b', '#a8693f']],
+        'vintage'  => ['label' => 'Vintage Envelope', 'desc' => 'Cover amplop kertas klasik dengan segel lilin', 'colors' => ['#f4ead5', '#7a4e2d', '#9c7a3c']],
+        'emerald'  => ['label' => 'Emerald Gold', 'desc' => 'Hijau zamrud dan emas, pola geometris bernuansa islami', 'colors' => ['#0f3d33', '#d4af37', '#14513f']],
+        'garden'   => ['label' => 'Garden Leaf', 'desc' => 'Hijau daun dengan ranting dan aksen blush, segar', 'colors' => ['#f6f8f1', '#4f7a4a', '#c97b84']],
         'javanese' => ['label' => 'Adat Jawa', 'desc' => 'Cokelat sogan dan emas dengan motif batik', 'colors' => ['#f3e6cf', '#6b3f1d', '#b8862b']],
     ];
 

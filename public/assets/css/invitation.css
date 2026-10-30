@@ -109,3 +109,53 @@ body[data-theme=javanese] .countdown div { border:1px solid var(--gold); border-
 .evpick legend { font-size:.85rem; padding:0 .4rem; } .evpick label { display:block; } .evpick input { width:auto; margin-right:.4rem; }
 .cover-box .to small:last-child { margin-top:.3rem; }
 body[data-theme=navy] .evpick { background:#1b2c50; border-color:#3a4c7d; }
+
+/* ===== TEMPLATE: Boho Terracotta ===== */
+body[data-theme=boho] { --f-script:'Dancing Script',cursive; --f-serif:'Playfair Display',serif; --bg:#fbf3ea; --alt:#f1dfcd; --ink:#4a3328; --accent:#c0714b; --gold:#a8693f; --card:#fffaf4; }
+body[data-theme=boho] .script { font-weight:600; }
+body[data-theme=boho] .cover-box { border-radius:999px 999px 28px 28px; background:rgba(251,243,234,.93); border:2px solid var(--accent); outline:2px solid #e3a77f; outline-offset:4px; padding-top:4rem; }
+body[data-theme=boho] .cover-box h1 { font-size:3rem; }
+body[data-theme=boho] .hero::before { content:''; display:block; width:170px; height:85px; margin:0 auto 1.2rem; border-radius:170px 170px 0 0; background:repeating-radial-gradient(circle at 50% 100%, #c0714b 0 9px, transparent 9px 18px, #e3a77f 18px 27px, transparent 27px 36px, #efc9a8 36px 45px, transparent 45px 54px); }
+body[data-theme=boho] .person img { width:230px; height:290px; border-radius:50%; border:6px solid var(--card); outline:2px solid var(--accent); }
+body[data-theme=boho] .card { border-radius:140px 140px 22px 22px; padding-top:2.6rem; }
+body[data-theme=boho] .gallery a { border-radius:999px 999px 10px 10px; }
+body[data-theme=boho] .title { font-style:italic; }
+body[data-theme=boho] .btn { border-radius:999px; }
+
+/* ===== TEMPLATE: Vintage Envelope ===== */
+body[data-theme=vintage] { --f-script:'Allura',cursive; --f-serif:'Cormorant Garamond',serif; --bg:#f4ead5; --alt:#e9d9b8; --ink:#3d2e1e; --accent:#7a4e2d; --gold:#9c7a3c; --card:#fbf5e6; background:repeating-linear-gradient(0deg,#0000 0 3px,#8a6a3a0a 3px 4px),var(--bg); }
+body[data-theme=vintage] .cover-box { position:relative; border-radius:3px; background:#fbf5e6; border:1px solid var(--gold); outline:1px solid var(--gold); outline-offset:-8px; padding-top:10.2rem; box-shadow:0 10px 30px rgba(60,40,10,.35); }
+body[data-theme=vintage] .cover-box::before { content:''; position:absolute; top:0; left:0; right:0; height:125px; background:linear-gradient(to bottom right,#e9d9b8 50%,transparent 50%) left/50% 100% no-repeat,linear-gradient(to bottom left,#e9d9b8 50%,transparent 50%) right/50% 100% no-repeat; border-bottom:0; }
+body[data-theme=vintage] .cover-box::after { content:'♥'; position:absolute; top:94px; left:50%; width:50px; height:50px; margin-left:-25px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#c0392b,#7b1e14); color:#f3c9c3; display:grid; place-items:center; font-size:1.2rem; box-shadow:0 3px 8px rgba(0,0,0,.4); }
+body[data-theme=vintage] .cover-box h1 { font-size:3rem; }
+body[data-theme=vintage] .person img { border-radius:4px; filter:sepia(.55) contrast(.95); border:8px solid #fffdf6; box-shadow:0 4px 14px rgba(60,40,10,.3); transform:rotate(-2deg); }
+body[data-theme=vintage] .person + .amp + .person img { transform:rotate(2deg); }
+body[data-theme=vintage] .card { border-radius:3px; border:1px solid var(--gold); outline:1px solid var(--gold); outline-offset:-8px; }
+body[data-theme=vintage] .gallery img { filter:sepia(.5); } body[data-theme=vintage] .gallery a { border:6px solid #fffdf6; border-radius:2px; box-shadow:0 3px 10px rgba(60,40,10,.25); }
+body[data-theme=vintage] .btn { border-radius:2px; letter-spacing:.08em; }
+
+/* ===== TEMPLATE: Emerald Gold (gelap) ===== */
+body[data-theme=emerald] { --f-script:'Great Vibes',cursive; --f-serif:'Cinzel',serif; --bg:#0f3d33; --alt:#0b2f27; --ink:#f1ead2; --accent:#d4af37; --gold:#d4af37; --card:#14513f; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23d4af37' stroke-opacity='.2' stroke-width='1'%3E%3Cpath d='M30 6L36 24L54 30L36 36L30 54L24 36L6 30L24 24Z'/%3E%3Crect x='14' y='14' width='32' height='32' transform='rotate(45 30 30)'/%3E%3C/g%3E%3C/svg%3E") 0 0/60px 60px,var(--bg); }
+body[data-theme=emerald] .alt { background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23d4af37' stroke-opacity='.2' stroke-width='1'%3E%3Cpath d='M30 6L36 24L54 30L36 36L30 54L24 36L6 30L24 24Z'/%3E%3Crect x='14' y='14' width='32' height='32' transform='rotate(45 30 30)'/%3E%3C/g%3E%3C/svg%3E") 0 0/60px 60px,var(--alt); }
+body[data-theme=emerald] .cover-box { background:rgba(11,47,39,.9); color:#f1ead2; border:2px solid var(--gold); outline:1px solid var(--gold); outline-offset:6px; border-radius:200px 200px 10px 10px; }
+body[data-theme=emerald] .cover-box h1 { font-size:3.2rem; }
+body[data-theme=emerald] .title { letter-spacing:.14em; font-size:1.5rem; }
+body[data-theme=emerald] .btn { color:#0b2f27; } body[data-theme=emerald] .btn.ghost { color:var(--gold); border-color:var(--gold); }
+body[data-theme=emerald] .card { border:1px solid var(--gold); } body[data-theme=emerald] .person img { border-color:var(--gold); }
+body[data-theme=emerald] .countdown b { color:var(--gold); } body[data-theme=emerald] .countdown div { border:1px solid var(--gold); }
+body[data-theme=emerald] .rsvp input, body[data-theme=emerald] .rsvp select, body[data-theme=emerald] .rsvp textarea, body[data-theme=emerald] .evpick { background:#0b2f27; color:#f1ead2; border-color:#2f6b58; }
+body[data-theme=emerald] .tag { background:#0b2f27; } body[data-theme=emerald] .tag.hadir { color:#8fe3a1; } body[data-theme=emerald] .tag.tidak { color:#ff9d9d; }
+body[data-theme=emerald] .flash.ok { background:#1d5a38; color:#d4f5de; } body[data-theme=emerald] .flash.err { background:#5a2323; color:#ffd5d5; }
+
+/* ===== TEMPLATE: Garden Leaf ===== */
+body[data-theme=garden] { --f-script:'Dancing Script',cursive; --f-serif:'Lora',serif; --bg:#f6f8f1; --alt:#e4ecd9; --ink:#2f3d2c; --accent:#4f7a4a; --gold:#c97b84; --card:#fff; }
+body[data-theme=garden] .script { font-weight:600; }
+body[data-theme=garden] .title::before, body[data-theme=garden] .hero::before { content:''; display:block; height:30px; margin-bottom:.4rem; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 30'%3E%3Cpath d='M8 15H112' stroke='%234f7a4a' stroke-width='1.5'/%3E%3Cg fill='%234f7a4a'%3E%3Cellipse cx='30' cy='9' rx='10' ry='4' transform='rotate(-25 30 9)'/%3E%3Cellipse cx='30' cy='21' rx='10' ry='4' transform='rotate(25 30 21)'/%3E%3Cellipse cx='60' cy='8' rx='11' ry='4.5' transform='rotate(-25 60 8)'/%3E%3Cellipse cx='60' cy='22' rx='11' ry='4.5' transform='rotate(25 60 22)'/%3E%3Cellipse cx='90' cy='9' rx='10' ry='4' transform='rotate(-25 90 9)'/%3E%3Cellipse cx='90' cy='21' rx='10' ry='4' transform='rotate(25 90 21)'/%3E%3C/g%3E%3C/svg%3E") center/auto 30px no-repeat; }
+body[data-theme=garden] .hero::before { height:40px; background-size:auto 40px; }
+body[data-theme=garden] .cover-box { position:relative; border-radius:30px; border:2px solid var(--accent); background:rgba(246,248,241,.93); padding-top:3.4rem; }
+body[data-theme=garden] .cover-box::before { content:''; position:absolute; top:12px; left:0; right:0; height:34px; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 30'%3E%3Cpath d='M8 15H112' stroke='%234f7a4a' stroke-width='1.5'/%3E%3Cg fill='%234f7a4a'%3E%3Cellipse cx='30' cy='9' rx='10' ry='4' transform='rotate(-25 30 9)'/%3E%3Cellipse cx='30' cy='21' rx='10' ry='4' transform='rotate(25 30 21)'/%3E%3Cellipse cx='60' cy='8' rx='11' ry='4.5' transform='rotate(-25 60 8)'/%3E%3Cellipse cx='60' cy='22' rx='11' ry='4.5' transform='rotate(25 60 22)'/%3E%3Cellipse cx='90' cy='9' rx='10' ry='4' transform='rotate(-25 90 9)'/%3E%3Cellipse cx='90' cy='21' rx='10' ry='4' transform='rotate(25 90 21)'/%3E%3C/g%3E%3C/svg%3E") center/auto 34px no-repeat; }
+body[data-theme=garden] .cover-box h1 { font-size:3rem; }
+body[data-theme=garden] .person img { border-radius:50%; width:230px; height:230px; border:5px solid var(--card); outline:2px solid var(--accent); }
+body[data-theme=garden] .card { border-radius:24px 6px 24px 6px; border-top:4px solid var(--accent); }
+body[data-theme=garden] .gallery a { border-radius:24px 6px 24px 6px; }
+body[data-theme=garden] .tag.hadir { color:var(--accent); }

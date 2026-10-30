@@ -36,7 +36,7 @@ if ($first) {
     <meta property="og:description" content="<?= esc($tgl($ts)) ?> — Anda diundang ke pernikahan kami.">
     <meta property="og:image" content="<?= esc($img($inv['cover_photo'])) ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&family=Allura&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&family=Allura&family=Dancing+Script:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/invitation.css') ?>">
 </head>
 <body data-theme="<?= esc($inv['theme']) ?>" class="locked">

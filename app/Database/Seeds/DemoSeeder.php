@@ -23,6 +23,10 @@ class DemoSeeder extends Seeder
             ['slug' => 'fajar-dan-nadia', 'theme' => 'navy', 'g' => ['Fajar Nugraha', 'Fajar', 'Putra dari Bapak Yusuf Nugraha & Ibu Tuti Handayani'], 'b' => ['Nadia Putri', 'Nadia', 'Putri dari Bapak Anwar Saleh & Ibu Mariam'], 'days' => 120],
             ['slug' => 'bagas-dan-laras', 'theme' => 'minimal', 'g' => ['Bagas Saputra', 'Bagas', 'Putra dari Bapak Teguh Saputra & Ibu Wulan'], 'b' => ['Laras Ayu', 'Laras', 'Putri dari Bapak Gunawan & Ibu Sari Indah'], 'days' => 150],
             ['slug' => 'arjuna-dan-sekar', 'theme' => 'javanese', 'g' => ['Arjuna Wicaksono', 'Arjuna', 'Putra dari Bapak Wicaksono & Ibu Siti Rahayu'], 'b' => ['Sekar Ayuningtyas', 'Sekar', 'Putri dari Bapak Suharto & Ibu Endang Lestari'], 'days' => 180],
+            ['slug' => 'rafi-dan-salsa', 'theme' => 'boho', 'g' => ['Rafi Ramadhan', 'Rafi', 'Putra dari Bapak Ahmad Ramadhan & Ibu Nurul'], 'b' => ['Salsabila Putri', 'Salsa', 'Putri dari Bapak Hasan Basri & Ibu Dewi'], 'days' => 210],
+            ['slug' => 'hanif-dan-aisyah', 'theme' => 'vintage', 'g' => ['Hanif Maulana', 'Hanif', 'Putra dari Bapak Maulana Yusuf & Ibu Fatimah'], 'b' => ['Aisyah Zahra', 'Aisyah', 'Putri dari Bapak Zainal Abidin & Ibu Khadijah'], 'days' => 240],
+            ['slug' => 'ilham-dan-zahra', 'theme' => 'emerald', 'g' => ['Ilham Firmansyah', 'Ilham', 'Putra dari Bapak Firman Syah & Ibu Halimah'], 'b' => ['Zahra Kamila', 'Zahra', 'Putri dari Bapak Kamil Hakim & Ibu Rahmah'], 'days' => 270],
+            ['slug' => 'yoga-dan-melati', 'theme' => 'garden', 'g' => ['Yoga Prakoso', 'Yoga', 'Putra dari Bapak Prakoso & Ibu Tri Wahyuni'], 'b' => ['Melati Kusuma', 'Melati', 'Putri dari Bapak Kusuma Jaya & Ibu Ratna'], 'days' => 300],
         ];
 
         foreach ($demos as $i => $d) {
