@@ -16,6 +16,37 @@ Website undangan pernikahan **multi-pasangan**: satu aplikasi, banyak undangan, 
 
 Halaman penuh per template: [Sage](docs/screenshots/sage-2-halaman-penuh.jpg) · [Rose](docs/screenshots/rose-2-halaman-penuh.jpg) · [Navy](docs/screenshots/navy-2-halaman-penuh.jpg) · [Minimal](docs/screenshots/minimal-2-halaman-penuh.jpg) · [Adat Jawa](docs/screenshots/javanese-2-halaman-penuh.jpg) · [Boho](docs/screenshots/boho-2-halaman-penuh.jpg) · [Vintage](docs/screenshots/vintage-2-halaman-penuh.jpg) · [Emerald](docs/screenshots/emerald-2-halaman-penuh.jpg) · [Garden](docs/screenshots/garden-2-halaman-penuh.jpg) · Admin: [daftar](docs/screenshots/admin-2-daftar.jpg), [kelola](docs/screenshots/admin-3-kelola.jpg)
 
+## Pemasangan di Laragon (Windows)
+Contoh folder: `D:\laragon\www\undangan`. Buka **Terminal** dari Laragon (agar PHP, Composer, dan Git sudah ada di PATH).
+```bat
+cd D:\laragon\www
+git clone -b ccr-1a44af08-js655g https://github.com/irfalnafiyandi/undangan.git undangan
+cd undangan
+composer install
+copy env .env
+```
+1. Aktifkan ekstensi **intl** dan **mbstring**: klik kanan ikon Laragon → *PHP* → *Extensions*, centang `intl` dan `mbstring`, lalu *Reload*.
+2. Buat database: *Menu → Database → HeidiSQL* → buat database `undangan` (collation `utf8mb4_general_ci`).
+3. Edit `.env`:
+```ini
+CI_ENVIRONMENT = development
+app.baseURL = 'http://undangan.test/'
+
+database.default.hostname = localhost
+database.default.database = undangan
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+```
+4. Jalankan migrasi dan data contoh:
+```bat
+php spark migrate
+php spark db:seed DemoSeeder
+```
+5. Buka `http://undangan.test` (Laragon *Auto Virtual Hosts*, klik *Reload* bila belum muncul). Document root harus mengarah ke folder **`public`**. Jika Laragon mengarah ke folder `undangan` (bukan `public`), ubah document root vhost ke `D:\laragon\www\undangan\public`, atau cukup jalankan `php spark serve` lalu buka `http://localhost:8080` (ubah `app.baseURL` sesuai).
+
+Setelah `git pull` berikutnya, jalankan lagi `composer install` dan `php spark migrate`.
+
 ## Menjalankan
 ```bash
 composer install
